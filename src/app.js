@@ -5,7 +5,7 @@ import { connect } from "./db.js";
 
 const app = express();
 
-app.use(bodyparser.json());       // 미들웨어 설정
+app.use(bodyparser.json());       
 
 app.use(Api.path, Api.router);    // API 경로 설정
 
