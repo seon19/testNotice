@@ -38,7 +38,7 @@ export const update = async (id, noticeData) => {
   }
   try{
   //게시글 있으면 게시글 수정
-  return await Notice.update(noticeData);
+  return await Notice.update(noticeData, {where: {_id: id}});
   } catch (error) {
     throw new Error(`게시글 수정 중 오류가 발생했습니다. ID: ${id}`);
   }
@@ -47,13 +47,12 @@ export const update = async (id, noticeData) => {
 // ID로 게시판 삭제
 export const deleteNotice = async (id) => {
   try {
-    const notice = await Notice.findByPk(id);  // 게시글 있는지 확인
-  if (!notice) {
-    throw new Error(`ID: ${id}에 해당하는 게시글을 찾을 수 없음`);
+    const notice = await Notice.findByPk(id);  // 게시글 있는지   확인
+  if (!notice) {  
+    throw new Error(`ID: ${id}에 해당하는 게시글을 찾을 수 없음`  );
   }
   // 게시글 존재할 경우 삭제
-    await notice.destroy(); 
-    return true;
+    return await Notice.destroy({where: {_id: id}}); 
   } catch (error) {
     throw new Error(`게시글 삭제 중 오류 발생. ID: ${id}`);
   }
