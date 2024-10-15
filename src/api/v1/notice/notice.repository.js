@@ -46,11 +46,12 @@ export const update = async (id, noticeData) => {
 
 // ID로 게시판 삭제
 export const deleteNotice = async (id) => {
-  try {
+
     const notice = await Notice.findByPk(id);  // 게시글 있는지   확인
   if (!notice) {  
     throw new Error(`ID: ${id}에 해당하는 게시글을 찾을 수 없음`  );
   }
+  try {
   // 게시글 존재할 경우 삭제
     return await Notice.destroy({where: {_id: id}}); 
   } catch (error) {

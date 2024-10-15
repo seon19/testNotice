@@ -23,7 +23,7 @@ class NoticeService {
 
   // 특정 ID의 게시판 삭제하기
   deleteNotice = async (id) => {
-    return await NoticeRepository.delete(id); // 저장소에서 게시판 삭제
+    return await NoticeRepository.deleteNotice(id); // 저장소에서 게시판 삭제
   };
 }
 

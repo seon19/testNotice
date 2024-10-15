@@ -30,10 +30,6 @@ export const createNotice = async (req, res) => {
     if(!_id || !title || !content) {
         throw new Error("필수 값이 입력되지 않았습니다.");
     }
-    
-    // const Notice = await Notice.create({
-    //     _id, title, content
-    // });
 
     const newNotice = await new NoticeService().createNotice(req.body); // 새 게시판 생성
     res.status(201).json(newNotice);
